@@ -25,6 +25,18 @@ const loadItemTable = () => {
     });
 }
 
+//------- Select item for table
+$('#itemTableBody').on('click','tr', function () {
+    selected_item_index = $(this).index();
+
+    let item_data = item_arr[selected_item_index];
+
+    $("#itemId").val(item_data.id);
+    $("#itemName").val(item_data.item_name);
+    $("#quantity").val(item_data.qty);
+    $("#itemDescription").val(item_data.item_description);
+    $("#price").val(item_data.price);
+});
 
 // --------------------------------Add-Customer-----------------------------
 
