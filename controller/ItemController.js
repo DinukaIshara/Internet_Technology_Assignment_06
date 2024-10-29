@@ -11,3 +11,44 @@ let generatedId = function generatedId(){
     return "I0" + id;
 
 }
+let setItemId = () => {
+    $("#itemId").val(generatedId());
+}
+
+let selected_item_index = null;
+const loadItemTable = () => {
+    $("#itemTableBody").empty();
+    item_arr.map((item, index) => {
+        console.log(item);
+        let data = `<tr><td>${item.id}</td><td>${item.item_name}</td><td>${item.qty}</td><td>${item.item_description}</td><td>${item.price}</td></tr>`;
+        $("#itemTableBody").append(data);
+    });
+}
+
+
+// --------------------------------Add-Customer-----------------------------
+
+$("#add-item").on("click",function (){
+    let id = generatedId();
+    let item_name = $("#itemName").val();
+    let qty = $("#quantity").val();
+    let item_description = $("#itemDescription").val();
+    let price = $("#price").val();
+
+    let item = new ItemModel(id,item_name,qty,item_description,price);
+
+    item_arr.push(item);
+
+    loadItemTable();
+
+    clean_form();
+
+})
+
+const clean_form = () => {
+    setItemId();
+    $("#itemName").val("");
+    $("#quantity").val("");
+    $("#itemDescription").val("");
+    $("#price").val("");
+}
