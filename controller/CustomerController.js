@@ -5,6 +5,16 @@ $(document).ready(function (){
     $("#customerId").val(generatedId());
 });
 
+const validateMobile = (mobile) => {
+    const sriLankanMobileRegex = /^(?:\+94|0)?7[0-9]{8}$/;
+    return sriLankanMobileRegex.test(mobile);
+}
+
+const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
 let generatedId = function generatedId(){
     console.log(customer_arr.length + 1);
     let id = customer_arr.length + 1;
@@ -42,6 +52,7 @@ $('#customerTableBody').on('click','tr', function () {
 });
 
 let selected_customer_index = null;
+
 
 // -----------------------------Add Customers--------------------------
 $("#add-customer").on("click",function (){
@@ -250,4 +261,9 @@ const clean_form = () => {
     $("#email").val('');
     $("#address").val('');
 }
+
+// --------Validation----------
+
+// const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+// const sriLankanMobileRegex = /^(?:\+94|0)?7[0-9]{8}$/;
 
