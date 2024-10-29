@@ -38,7 +38,7 @@ $('#itemTableBody').on('click','tr', function () {
     $("#price").val(item_data.price);
 });
 
-// --------------------------------Add-Customer-----------------------------
+// --------------------------------Add-Item-----------------------------
 
 $("#add-item").on("click",function (){
     let id = generatedId();
@@ -55,7 +55,27 @@ $("#add-item").on("click",function (){
 
     clean_form();
 
-})
+});
+
+// ---------------------Update Item--------------------------
+
+$("#update-item").on("click",function () {
+    let id = $("#itemId").val();
+    let item_name = $("#itemName").val();
+    let qty = $("#quantity").val();
+    let item_description = $("#itemDescription").val();
+    let price = $("#price").val();
+
+
+    let item = new ItemModel(id,item_name,qty,item_description,price);
+
+    item_arr[selected_item_index] = item;
+    loadItemTable();
+    clean_form();
+
+
+});
+
 
 const clean_form = () => {
     setItemId();
