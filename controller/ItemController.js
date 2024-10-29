@@ -76,12 +76,19 @@ $("#update-item").on("click",function () {
 });
 
 // -------------Delete Item--------------------
+
 $("#delete-item").on("click",function () {
+
     item_arr.splice(selected_item_index,1);
     clean_form();
     loadItemTable();
 });
 
+
+// -------------- Clear item form -----------------
+$("#clear-item").on("click", function () {
+    clean_form();
+});
 
 
 const clean_form = () => {
