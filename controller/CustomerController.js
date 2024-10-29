@@ -110,3 +110,87 @@ $("#add-customer").on("click",function (){
     clean_form();
 
 });
+
+// ---------------------Update Customer--------------------------
+
+$("#update-customer").on("click",function () {
+    //console.log("Clicked button!!!");
+    let id = $("#customerId").val();
+    let fName = $("#firstName").val();
+    let lName = $("#lastName").val();
+    let mobile = $("#mobile").val();
+    let eemail = $("#email").val();
+    let address = $("#address").val();
+
+    if (fName === "") {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid First Name",
+            text: "Something went wrong!"
+        });
+    } else if (lName === "") {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Last Name",
+            text: "Something went wrong!"
+        });
+    } else if (!validateMobile(mobile)) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Mobile Number",
+            text: "Something went wrong!"
+        });
+    } else if (!validateEmail(eemail)) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Email",
+            text: "Something went wrong!"
+        });
+    } else if (address === "") {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Address",
+            text: "Something went wrong!"
+        });
+    }
+
+    let customer = new CustomerModel(id,fName,lName,mobile,eemail,address);
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, update it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            customer_arr[selected_customer_index] = customer;
+            loadCustomerTable();
+            clean_form();
+            swalWithBootstrapButtons.fire({
+                title: "Updated!",
+                text: "Your file has been updated.",
+                icon: "success"
+            });
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire({
+                title: "Cancelled",
+                text: "Your imaginary file is safe :)",
+                icon: "error"
+            });
+        }
+    });
+
+});
