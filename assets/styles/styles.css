@@ -1,71 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    background: #ececec;
+.container-fluid .navbar-brand {
+    color: white;
+    font-weight: bold;
 }
 
-section {
-    min-height: 100vh;
-    padding: 7rem 9% 1rem;
+.container-fluid .navbar-brand:hover {
+    color: white;
+    font-weight: bold;
 }
 
-body>header>nav {
-    position: fixed;
-    top:0;
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+.navbar .container-fluid .collapse li a {
+    color: white;
+    opacity: 60%;
 }
 
-/*------------ Login container ------------*/
-
-.box-area{
-    width: 930px;
+.navbar .container-fluid .collapse li a:hover {
+    color: white;
+    opacity: 100%;
 }
 
-/*------------ Right box ------------*/
-
-.right-box{
-    padding: 40px 30px 40px 40px;
+.navbar .container-fluid .collapse li a::before {
+    color: white;
 }
 
-/*------------ Custom Placeholder ------------*/
-
-::placeholder{
-    font-size: 16px;
+#homeSection {
+    display: grid;
+    grid-template-rows: 10rem;
+    justify-content: center;
+    align-items: center;    background-size: cover;
+    background-position: center;
+    color: #000000;
 }
 
-.rounded-4{
-    border-radius: 20px;
-}
-.rounded-5{
-    border-radius: 30px;
+#homeSection .card-grid-container {
+    display: flex;
+    column-gap: 20px;
 }
 
-/*------------ For small screens------------*/
-
-@media only screen and (max-width: 768px){
-
-    .box-area{
-        margin: 0 10px;
-
-    }
-    .left-box{
-        height: 250px;
-        overflow: hidden;
-    }
-    .right-box{
-        padding: 20px;
-    }
-
+#homeSection h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+#homeSection p {
+    font-size: 1.5rem;
 }
