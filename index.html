@@ -158,7 +158,7 @@
     <div>
         <div class="form-floating mb-3" style="position: relative; top: 10px; left: 10px; height: 50px">
             <h2 for="floatingInput" style="font-size: 30px; display: flex; align-items: center;">
-                <img src="assets/images/item.png" alt="item" style="width: 60px; height: 60px; margin-right: 10px;">
+                <img src="assets/img/item.png" alt="item" style="width: 60px; height: 60px; margin-right: 10px;">
                 Item Management
             </h2>
         </div>
@@ -225,11 +225,11 @@
 
 <!--Order_details Section-->
 
-<section id="order-section">
+<section id="orderSection" class="container mt-5">
     <div>
         <div class="form-floating mb-3" style="position: relative; top: 10px; left: 10px; height: 50px">
             <h2 for="floatingInput" style="font-size: 30px; display: flex; align-items: center;">
-                <img src="assets/img/customers.png" alt="order" style="width: 60px; height: 60px; margin-right: 10px;">
+                <img src="assets/img/order.png" alt="order" style="width: 60px; height: 60px; margin-right: 10px;">
                 Order
             </h2>
         </div>
@@ -252,8 +252,8 @@
                             <input type="date" class="form-control" id="orderDate" placeholder="07/06/2024">
                         </div>
                         <div class="mb-3">
-                            <label for="customerId" class="form-label">Customer ID:</label>
-                            <select id="customerId" class="form-select">
+                            <label for="customerOId" class="form-label">Customer ID:</label>
+                            <select id="customerOId" class="form-select">
                                 <option selected>C001</option>
                                 <option>C002</option>
                                 <option>C003</option>
@@ -262,14 +262,6 @@
                         <div class="mb-3">
                             <label for="customerName" class="form-label">Name:</label>
                             <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerSalary" class="form-label">Salary:</label>
-                            <input type="text" class="form-control" id="customerSalary" placeholder="Customer Salary">
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerAddress" class="form-label">Address:</label>
-                            <input type="text" class="form-control" id="customerAddress" placeholder="Customer Address">
                         </div>
                     </div>
                 </div>
@@ -283,20 +275,12 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="itemId" class="form-label">Item:</label>
-                            <select id="itemId" class="form-select">
-                                <option selected>I001</option>
-                                <option>I002</option>
-                                <option>I003</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <label for="itemCode" class="form-label">Item Code:</label>
                             <input type="text" class="form-control" id="itemCode" placeholder="P002">
                         </div>
                         <div class="mb-3">
-                            <label for="itemName" class="form-label">Item Name:</label>
-                            <input type="text" class="form-control" id="itemName" placeholder="Ice-cream">
+                            <label for="itemOName" class="form-label">Item Name:</label>
+                            <input type="text" class="form-control" id="itemOName" placeholder="Ice-cream">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -313,9 +297,6 @@
                             <label for="orderQty" class="form-label">Order Quantity:</label>
                             <input type="text" class="form-control" id="orderQty" placeholder="Quantity">
                         </div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-danger">Add Item</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -324,9 +305,7 @@
             <!-- Total Section -->
             <div class="col-lg-3">
                 <div class="card shadow-lg mb-4">
-                    <div class="card-body">
-                        <h4>Total: <span class="text-primary">Rs. 1500</span></h4>
-                        <h5 class="text-danger">Sub Total: Rs. 1500</h5>
+                    <div class="card-body" style="margin: 15px">
                         <div class="mb-3">
                             <label for="cash" class="form-label">Cash:</label>
                             <input type="text" class="form-control" id="cash" placeholder="Cash Amount">
@@ -339,7 +318,9 @@
                             <label for="balance" class="form-label">Balance:</label>
                             <input type="text" class="form-control" id="balance" placeholder="Balance">
                         </div>
-                        <button type="button" class="btn btn-success">Success</button>
+                        <h4>Total: <span class="text-primary">Rs. 1500</span></h4>
+                        <h5 class="text-danger">Sub Total: Rs. 1500</h5>
+                        <button type="button" class="btn btn-success">Order</button>
                     </div>
                 </div>
             </div>
