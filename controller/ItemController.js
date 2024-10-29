@@ -66,7 +66,6 @@ $("#update-item").on("click",function () {
     let item_description = $("#itemDescription").val();
     let price = $("#price").val();
 
-
     let item = new ItemModel(id,item_name,qty,item_description,price);
 
     item_arr[selected_item_index] = item;
@@ -75,6 +74,14 @@ $("#update-item").on("click",function () {
 
 
 });
+
+// -------------Delete Item--------------------
+$("#delete-item").on("click",function () {
+    item_arr.splice(selected_item_index,1);
+    clean_form();
+    loadItemTable();
+});
+
 
 
 const clean_form = () => {
