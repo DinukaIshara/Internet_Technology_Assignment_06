@@ -1,5 +1,6 @@
 import ItemModel from "../models/itemModel.js";
 import {item_arr} from "../db/database.js";
+import {loadItemCbx} from "./OrderController.js";
 
 $(document).ready(function (){
     $("#itemId").val(generatedId());
@@ -54,6 +55,7 @@ $("#add-item").on("click",function (){
     loadItemTable();
 
     clean_form();
+    loadItemCbx();
 
 });
 
