@@ -256,12 +256,8 @@
                             <input type="date" class="form-control" id="orderDate" placeholder="07/06/2024">
                         </div>
                         <div class="mb-3">
-                            <label for="customerOId" class="form-label">Customer ID:</label>
-                            <select id="customerOId" class="form-select">
-                                <option selected>C001</option>
-                                <option>C002</option>
-                                <option>C003</option>
-                            </select>
+                            <label for="customerTel" class="form-label">Customer Tel:</label>
+                            <input type="tel" class="form-control" id="customerTel" placeholder="07/06/2024">
                         </div>
                         <div class="mb-3">
                             <label for="customerName" class="form-label">Name:</label>
@@ -279,8 +275,10 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="itemCode" class="form-label">Item Code:</label>
-                            <input type="text" class="form-control" id="itemCode" placeholder="P002">
+                            <label for="itemOCode" class="form-label">Item Code:</label>
+                            <select id="itemOCode" class="form-select">
+                                <option selected>I001</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="itemOName" class="form-label">Item Name:</label>
@@ -301,6 +299,7 @@
                             <label for="orderQty" class="form-label">Order Quantity:</label>
                             <input type="text" class="form-control" id="orderQty" placeholder="Quantity">
                         </div>
+                        <button id="addCart" type="button" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div>
@@ -322,8 +321,7 @@
                             <label for="balance" class="form-label">Balance:</label>
                             <input type="text" class="form-control" id="balance" placeholder="Balance">
                         </div>
-                        <h4>Total: <span class="text-primary">Rs. 1500</span></h4>
-                        <h5 class="text-danger">Sub Total: Rs. 1500</h5>
+                        <h4>Total: <span class="text-primary">Rs. </span> <span class="text-primary" id="orderTotal" >1500</span></h4>
                         <button type="button" class="btn btn-success">Order</button>
                     </div>
                 </div>
@@ -331,12 +329,10 @@
         </div>
 
         <!-- order Table -->
-        <h3 class="mt-5">Order Details</h3>
+        <h3 class="mt-5">Cart</h3>
         <table class="table table-bordered table-striped mt-3">
             <thead>
             <tr>
-                <th>Order Id</th>
-                <th>Item Code</th>
                 <th>Item Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -403,6 +399,7 @@
 <script src="controller/HomeController.js" type="module"></script>
 <script src="controller/CustomerController.js" type="module"></script>
 <script src="controller/ItemController.js" type="module"></script>
+<script src="controller/OrderDetailsController.js" type="module"></script>
 
 <!-- JQuery-->
 <script src="lib/jquery-3.7.1.min.js"></script>
