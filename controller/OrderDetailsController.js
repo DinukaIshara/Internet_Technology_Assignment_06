@@ -17,15 +17,13 @@ export function setOrdersTable(){
 export function setOrderDetailsTable(){
     $("#orderDetailsTableBody").empty()
 
-
     order_detail_arr.map((orderDetail,number) => {
         let data = `<tr>
-                           <td >${orderDetail._orderId}</td>
-                           <td >${orderDetail._itemId}</td>
-                           <td >${orderDetail._qty}</td>
-                          
-                           
+                           <td>${orderDetail._itemId}</td>
+                           <td>${orderDetail._price}</td>
+                           <td>${orderDetail._qty}</td>
+                           <td>${orderDetail._total}</td>
                            </tr>`
         $("#orderDetailsTableBody").append(data);
-    })
+    });
 }

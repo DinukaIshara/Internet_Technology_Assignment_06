@@ -35,6 +35,7 @@ $("#customerTel").on('keypress', function (e){
     }
 });
 
+let selected_customer_index = null;
 
 function searchCustomer(telephoneNo){
 
@@ -48,6 +49,23 @@ function searchCustomer(telephoneNo){
         return false;
     }
 
+
+}
+
+$("#cashOn").on('keypress', function (e){
+    if(e.which === 13 ){
+        netTotal = calculateNetValue();
+        getBalance(netTotal);
+    }
+});
+
+function getBalance(totalNet){
+    console.log(totalNet);
+    let cash = $("#cashOn").val();
+    console.log(cash);
+    let balance = cash - totalNet;
+    console.log(balance)
+    $("#balanceOn").val(balance);
 
 }
 
@@ -83,10 +101,11 @@ $("#itemOCode").on('input', function (){
 
 })
 
-
+let itemname;
 
 $("#addCart").on('click', function (){
     let itemId = $("#itemOCode").val();
+    itemname = $("#itemOName").val();
     let price = +$("#itemPrice").val();
     let qty = +$("#orderQty").val();
     let total = price * qty;
@@ -109,7 +128,7 @@ $("#addCart").on('click', function (){
             loadCart();
             setTotalValues();
             clearItemSection();
-            $("#inputDiscount").focus();
+            $("#cash").focus();
         }else{
             cart_arr[cartIndex].qty = qty;
             cart_arr[cartIndex].total = cart_arr[cartIndex].qty * price;
@@ -125,19 +144,33 @@ $("#addCart").on('click', function (){
 
 
 function loadCart(){
-    $("#cartTableBody").empty();
+    $("#orderDetailsTableBody").empty();
     cart_arr.map((cartItem, number) => {
         let data = `<tr>
                                 <td>${cartItem.itemId}</td>
                                 <td>${cartItem.price}</td>
                                 <td>${cartItem.qty}</td>
                                 <td>${cartItem.total}</td>
-                                <td><button class="cart_remove btn-danger" data-id="${cartItem.itemId}">Remove</button></td>
+                                <td><button class="cart_remove btn-danger" data-id="${cartItem.itemId}" onclick="deleteItemCart('${cartItem.itemId}')" >Remove</button></td>
                             </tr>`
 
-        $("#cartTableBody").append(data);
+        $("#orderDetailsTableBody").append(data);
     })
 }
+
+function deleteItemCart(name) {
+    selected_customer_index = $(this).index();
+
+    cart_arr[selected_customer_index] = null;
+}
+
+/*function updateItem(i_code, quantity) {
+    for (let i = 0; i < item_arr.length; i++) {
+        if (i_code === item_arr[i].itemCode) {
+            item_arr[i].itemQty = item_arr[i].itemQty - quantity;
+        }
+    }
+}*/
 
 $("#cartTableBody").on('click','button',function (){
     const itId = $(this).data("id");
@@ -176,29 +209,11 @@ function calculateNetValue(){
     return total;
 }
 
-
-
-$("#inputDiscount").on('keypress', function (e){
-    if(e.which === 13 ){
-        let dis = +$("#inputDiscount").val();
-        if(!dis || dis == 0 ){
-            subTotal = netTotal;
-            $("#subTotal").text(`${subTotal}`);
-        }else{
-            dis = dis/100;
-            let discount = netTotal * dis;
-            subTotal = netTotal - discount;
-            $("#subTotal").text(`${subTotal}`);
-        }
-        $("#inputCash").focus();
-
-
-    }});
-
 function clearItemSection(){
     $("#itemOCode").val("");
-    $("#inputQtyOnHand").val("");
+    $("#itemOName").val("");
     $("#itemPrice").val("");
+    $("#itemQtyOnHand").val("");
     $("#orderQty").val("");
 
 }
@@ -244,14 +259,7 @@ $("#btn_placeOrder").on('click', function (){
             text: "Select a date from calendar",
 
         });
-    }/*else if(!itemDesc){
-        Swal.fire({
-            icon: "error",
-            title: "Items Fields empty",
-            text: "Select a item from select box",
-
-        });
-    }*/else if(!discount){
+    }else if(!discount){
         Swal.fire({
             icon: "error",
             title: "Discount Fields empty",
@@ -289,6 +297,7 @@ $("#btn_placeOrder").on('click', function (){
         blankCart();
         loadCart();
         clearPaymentDetails();
+        order_detail_arr.splice(0,order_detail_arr.length);
         console.log(order_array.length);
         console.log(orderDetail_array.length);
         setOrdersTable();
