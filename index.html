@@ -318,7 +318,7 @@
                             <input type="text" class="form-control" id="balanceOn" placeholder="Balance">
                         </div>
                         <h4>Total: <span class="text-primary">Rs. </span> <span class="text-primary" id="orderTotal" >00.00</span></h4>
-                        <button type="button" class="btn btn-success">Order</button>
+                        <button type="button" class="btn btn-success" id="btn_placeOrder">Order</button>
                     </div>
                 </div>
             </div>
@@ -349,10 +349,9 @@
     <table class="table table-bordered table-striped mt-3">
         <thead>
         <tr>
-            <th>Order Date</th>
-            <th>Customer Name</th>
-            <th>Total Price</th>
-            <th>Actions</th>
+            <th>Order ID</th>
+            <th>Item ID</th>
+            <th>QTY</th>
         </tr>
         </thead>
         <tbody id="orderHistoryBody">

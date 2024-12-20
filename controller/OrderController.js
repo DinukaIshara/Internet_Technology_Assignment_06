@@ -1,6 +1,8 @@
 import {order_arr,order_detail_arr,customer_arr,item_arr} from "../db/database.js";
-//import orderModel from "../models/orderModel.js";
-// import orderDetailModel from "../models/orderDetailModel.js";
+//import OrderModel from "../models/orderModel.js";
+//import OrderDetailModel from "../models/orderDetailModel.js";
+//import {orderModel} from "../models/orderModel";
+//import {orderDetailModel} from "../models/orderDetailModel";
 import {setOrdersTable,setOrderDetailsTable} from "./OrderDetailsController.js";
 
 //$("inputCode1")
@@ -231,17 +233,15 @@ $("#inputCash").on('keypress', function (e){
 })
 
 $("#btn_placeOrder").on('click', function (){
-    let cusNumber = $("#inputCustomerTelephone1").val();
-    let date = $("#inputDate").val();
-    let cusName = $("#inputCustomerName2").val();
+    let cusNumber = $("#customerTel").val();
+    let date = $("#orderDate").val();
+    let cusName = $("#customerName").val();
     console.log(date)
     console.log(cusName);
-    let itemDesc = $("#inputDesc1").val();
-    let orderQty = $("#inputOrderQty").val();
+    let itemId = $("#itemOCode").val();
+    let orderQty = $("#orderQty").val();
 
-    let cartItems = cart_array.length;
-    let discount = $("#inputDiscount").val();
-    let cash = $("#inputCash").val();
+    let cash = $("#cashOn").val();
 
 
     if(!cusName){
@@ -259,21 +259,8 @@ $("#btn_placeOrder").on('click', function (){
             text: "Select a date from calendar",
 
         });
-    }else if(!discount){
-        Swal.fire({
-            icon: "error",
-            title: "Discount Fields empty",
-            text: "Enter discount amount",
 
-        });
 
-    }else if(cartItems == 0){
-        Swal.fire({
-            icon: "error",
-            title: "No items added to the cart",
-            text: "Add items to the cart",
-
-        });
     }else if(!cash ){
         Swal.fire({
             icon: "error",
@@ -328,12 +315,12 @@ function updateItem(){
 let orderId ;
 let date ;
 let cusId;
-let itemId = $("#inputItemId").val();
-subTotal = $("#subTotal").val();
+let itemId = $("#itemOCode").val();
+subTotal = $("#orderTotal").val()
 
 function saveOrder(){
-    orderId = $("#inputOrderId").val()
-    date = $("#inputDate").val();
+    orderId = $("#orderId").val()
+    date = $("#orderDate").val();
     console.log(orderId);
     let order = new OrderModel(orderId,date,subTotal,cusId);
     order_array.push(order);
@@ -341,14 +328,14 @@ function saveOrder(){
 
 function saveOrderDetails(){
     cart_array.map((cartItem, number)=>{
-        let orderRow = new OrderDetailsModel(orderId,cartItem.itemId, cartItem.qty);
+        let orderRow = new OrderDetailModel(orderId,cartItem.itemId, cartItem.qty);
         orderDetail_array.push(orderRow);
     })
 }
 
 function clearInvoiceDetails() {
-    $("#inputCustomerTelephone1").val("");
-    $("#inputCustomerName2").val("");
+    $("#customerTel").val("");
+    $("#customerName").val("");
 }
 
 function blankCart(){
@@ -356,34 +343,11 @@ function blankCart(){
 }
 
 function clearPaymentDetails(){
-    $("#netTotal").text("--");
-    $("#subTotal").text("--");
-    $("#inputDiscount").val("");
-    $("#inputCash").val("");
-    $("#inputBalance").val("");
+    $("#orderTotal").text("00.00");
+    $("#cashOn").val("");
+    $("#balanceOn").val("");
 
 }
-
-/*let orderId = $("#inputOrderId").val();
-let date = $("#inputDate").val();
-let cusId;
-let itemId = $("#inputItemId").val();
-let subTotal = $("#subTotal").val();
-//cart_arrray
-
-function saveOrder(){
-    let order = new OrderModel(orderId,date,subTotal,cusId);
-    order_array.push(order);
-}
-
-function saveOrderDetails(){
-    cart_array.map((cartItem, number)=>{
-        let orderRow = new OrderDetailsModel(orderId,cartItem.itemId, cartItem.qty);
-        cart_array.push(orderRow);
-
-    })
-
-}*/
 
 
 //net total sub total reset wenna
