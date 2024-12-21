@@ -1,8 +1,6 @@
 import {order_arr,order_detail_arr,customer_arr,item_arr} from "../db/database.js";
-//import OrderModel from "../models/orderModel.js";
-//import OrderDetailModel from "../models/orderDetailModel.js";
-//import {orderModel} from "../models/orderModel";
-//import {orderDetailModel} from "../models/orderDetailModel";
+import OrderModel from "../models/orderModel.js";
+import OrderDetailModel from "../models/orderDetailModel.js";
 import {setOrdersTable,setOrderDetailsTable} from "./OrderDetailsController.js";
 
 //$("inputCode1")
@@ -166,13 +164,6 @@ function deleteItemCart(name) {
     cart_arr[selected_customer_index] = null;
 }
 
-/*function updateItem(i_code, quantity) {
-    for (let i = 0; i < item_arr.length; i++) {
-        if (i_code === item_arr[i].itemCode) {
-            item_arr[i].itemQty = item_arr[i].itemQty - quantity;
-        }
-    }
-}*/
 
 $("#cartTableBody").on('click','button',function (){
     const itId = $(this).data("id");
@@ -190,14 +181,6 @@ function setTotalValues(){
 
     subTotal = netTotal;
     $("#subTotal").text(`${subTotal}`);
-    /* let dis = +$("#inputDiscount").val()/100 ;
-     if(dis == 0 ){
-         dis =1;
-     }
-
-     let discount = netTotal * dis;
-     let subTotal = netTotal - discount;
-     $("#subTotal").text(`${subTotal}`);*/
 
 
 }
@@ -298,14 +281,13 @@ $("#btn_placeOrder").on('click', function (){
 
 
 function updateItem(){
-    cart_array.map((cartItem, number)=>{
+    cart_arr.map((cartItem, number)=>{
         let itemNumber = cartItem.itemId;
         console.log(itemNumber);
         let itemQty = cartItem.qty;
         console.log(itemQty);
 
-        let item = item_array.find(item => item._code === itemNumber)
-        console.log(item._desc);
+        let item = item_arr.find(item => item._code === itemNumber)
         item._qty  = item._qty-itemQty;
 
     })
@@ -323,13 +305,13 @@ function saveOrder(){
     date = $("#orderDate").val();
     console.log(orderId);
     let order = new OrderModel(orderId,date,subTotal,cusId);
-    order_array.push(order);
+    order_arr.push(order);
 }
 
 function saveOrderDetails(){
-    cart_array.map((cartItem, number)=>{
+    cart_arr.map((cartItem, number)=>{
         let orderRow = new OrderDetailModel(orderId,cartItem.itemId, cartItem.qty);
-        orderDetail_array.push(orderRow);
+        order_detail_arr.push(orderRow);
     })
 }
 

@@ -1,4 +1,4 @@
-export class OrderDetailsModel {
+export default class orderDetailsModel {
     constructor(orderId, itemId, qty) {
         this._orderId = orderId;
         this._itemId = itemId;

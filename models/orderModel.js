@@ -1,4 +1,4 @@
-export class orderModel {
+export default class orderModel {
     constructor(id, date, total, cusId) {
         this._id = id;
         this._date = date;
